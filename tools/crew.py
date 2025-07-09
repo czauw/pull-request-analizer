@@ -5,14 +5,16 @@ from dotenv import load_dotenv
 import os
 from typing import List
 load_dotenv()
+BASE_URL1=os.getenv("BASE_URL1")
+BASE_URL2=os.getenv("BASE_URL2")
 GEMINI_MODEL_NAME=os.getenv("GEMINI_MODEL_NAME")
-GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
+API_KEY1=os.getenv("API_KEY1")
 QWEN_MODEL_NAME=os.getenv("QWEN_MODEL_NAME")
-QWEN_API_KEY=os.getenv("QWEN_API_KEY")
-gemini=LLM(model="openai/"+GEMINI_MODEL_NAME,api_key=GEMINI_API_KEY,base_url="https://aizex.top/v1/",timeout=600)
-qwen=LLM(model="openai/"+QWEN_MODEL_NAME,api_key=QWEN_API_KEY,base_url="https://api.siliconflow.cn/v1/",timeout=600)
-gpt4d1=LLM(model="openai/gpt-4.1-2025-04-14",api_key=GEMINI_API_KEY,base_url="https://aizex.top/v1/",timeout=600)
-gpt4o=LLM(model="openai/gpt-4o",api_key=GEMINI_API_KEY,base_url="https://aizex.top/v1/",timeout=600)
+API_KEY2=os.getenv("API_KEY2")
+gemini=LLM(model="openai/"+GEMINI_MODEL_NAME,api_key=API_KEY1,base_url=BASE_URL1,timeout=600)
+qwen=LLM(model="openai/"+QWEN_MODEL_NAME,api_key=API_KEY2,base_url=BASE_URL2,timeout=600)
+gpt4d1=LLM(model="openai/gpt-4.1-2025-04-14",api_key=API_KEY1,base_url=BASE_URL1,timeout=600)
+gpt4o=LLM(model="openai/gpt-4o",api_key=API_KEY1,base_url=BASE_URL2,timeout=600)
 @CrewBase
 class PrAnalyst():
     agents_config="../config/agents.yaml"
